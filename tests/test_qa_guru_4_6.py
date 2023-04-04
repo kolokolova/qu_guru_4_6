@@ -37,7 +37,7 @@ def test_find_suitable_user():
     def get_user_name(users):
         return users["name"]
 
-    suiable_user = [user for user in users if get_user_name(user) == "Olga"]
+    suiable_user = [user for user in users if get_user_name(user) == "Olga"][0]
     assert suiable_user == {"name": "Olga", "age": 45}
     # TODO найдите всех пользователей младше 20 лет
     suiable_users = None
@@ -62,6 +62,10 @@ def test_find_suitable_user():
 # >>> open_browser(browser_name="Chrome")
 # "Open Browser [Chrome]"
 
+def edit_name_function(func, *args):
+    return f'''{func.__name__.replace('_', ' ').title()} [{', '.join(args)}]'''
+
+
 def test_readable_function():
     open_browser(browser_name="Chrome")
     go_to_companyname_homepage(page_url="https://companyname.com")
@@ -69,15 +73,15 @@ def test_readable_function():
 
 
 def open_browser(browser_name):
-    actual_result = None
+    actual_result = edit_name_function(open_browser, browser_name)
     assert actual_result == "Open Browser [Chrome]"
 
 
 def go_to_companyname_homepage(page_url):
-    actual_result = None
+    actual_result = edit_name_function(go_to_companyname_homepage, page_url)
     assert actual_result == "Go To Companyname Homepage [https://companyname.com]"
 
 
 def find_registration_button_on_login_page(page_url, button_text):
-    actual_result = None
+    actual_result = edit_name_function(find_registration_button_on_login_page, page_url, button_text)
     assert actual_result == "Find Registration Button On Login Page [https://companyname.com/login, Register]"
