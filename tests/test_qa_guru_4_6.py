@@ -63,7 +63,9 @@ def test_find_suitable_user():
 # "Open Browser [Chrome]"
 
 def edit_name_function(func, *args):
-    return f'''{func.__name__.replace('_', ' ').title()} [{', '.join(args)}]'''
+    full_function_name = f'''{func.__name__.replace('_', ' ').title()} [{', '.join(args)}]'''
+    print(full_function_name)
+    return full_function_name
 
 
 def test_readable_function():
